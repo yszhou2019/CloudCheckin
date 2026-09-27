@@ -36,39 +36,39 @@ commands:
               "https://api.telegram.org/bot${telegram_token}/sendMessage"
 
 jobs:
-  nodeseek:
-    docker:
-      - image: cimg/python:3.11
-    steps:
-      - checkout
-      - run:
-          name: Install dependencies
-          command: |
-            python -m pip install --upgrade pip
-            pip install curl_cffi python-dotenv
-      - run:
-          name: Run Nodeseek signin
-          command: |
-            python -m nodeseek.nodeseek
-      - notify-job-failure:
-          source: NODESEEK
+  # nodeseek:
+  #   docker:
+  #     - image: cimg/python:3.11
+  #   steps:
+  #     - checkout
+  #     - run:
+  #         name: Install dependencies
+  #         command: |
+  #           python -m pip install --upgrade pip
+  #           pip install curl_cffi python-dotenv
+  #     - run:
+  #         name: Run Nodeseek signin
+  #         command: |
+  #           python -m nodeseek.nodeseek
+  #     - notify-job-failure:
+  #         source: NODESEEK
 
-  v2ex:
-    docker:
-      - image: cimg/python:3.11
-    steps:
-      - checkout
-      - run:
-          name: Install dependencies
-          command: |
-            python -m pip install --upgrade pip
-            pip install curl_cffi python-dotenv
-      - run:
-          name: Run V2EX signin
-          command: |
-            python -m v2ex.v2ex
-      - notify-job-failure:
-          source: V2EX
+  # v2ex:
+  #   docker:
+  #     - image: cimg/python:3.11
+  #   steps:
+  #     - checkout
+  #     - run:
+  #         name: Install dependencies
+  #         command: |
+  #           python -m pip install --upgrade pip
+  #           pip install curl_cffi python-dotenv
+  #     - run:
+  #         name: Run V2EX signin
+  #         command: |
+  #           python -m v2ex.v2ex
+  #     - notify-job-failure:
+  #         source: V2EX
 
   onepoint3acres:
     docker:
@@ -87,51 +87,51 @@ jobs:
       - notify-job-failure:
           source: 1POINT3ACRES
 
-  deepflood:
-    docker:
-      - image: cimg/python:3.11
-    steps:
-      - checkout
-      - run:
-          name: Install dependencies
-          command: |
-            python -m pip install --upgrade pip
-            pip install curl_cffi python-dotenv
-      - run:
-          name: Run Deepflood signin
-          command: |
-            python -m deepflood.deepflood
-      - notify-job-failure:
-          source: DEEPFLOOD
+  # deepflood:
+  #   docker:
+  #     - image: cimg/python:3.11
+  #   steps:
+  #     - checkout
+  #     - run:
+  #         name: Install dependencies
+  #         command: |
+  #           python -m pip install --upgrade pip
+  #           pip install curl_cffi python-dotenv
+  #     - run:
+  #         name: Run Deepflood signin
+  #         command: |
+  #           python -m deepflood.deepflood
+  #     - notify-job-failure:
+  #         source: DEEPFLOOD
 
-  sakurafrp:
-    docker:
-      - image: cimg/python:3.11
-    steps:
-      - checkout
-      - run:
-          name: Install dependencies
-          command: |
-            python -m pip install --upgrade pip
-            pip install python-dotenv 'httpx[http2]' cryptography openai
-      - run:
-          name: Run SakuraFrp signin
-          command: |
-            python -m sakurafrp.sakurafrp
-      - notify-job-failure:
-          source: SAKURAFRP
+  # sakurafrp:
+  #   docker:
+  #     - image: cimg/python:3.11
+  #   steps:
+  #     - checkout
+  #     - run:
+  #         name: Install dependencies
+  #         command: |
+  #           python -m pip install --upgrade pip
+  #           pip install python-dotenv 'httpx[http2]' cryptography openai
+  #     - run:
+  #         name: Run SakuraFrp signin
+  #         command: |
+  #           python -m sakurafrp.sakurafrp
+  #     - notify-job-failure:
+  #         source: SAKURAFRP
 
 workflows:
   # Allow manual triggers
   manual_trigger:
     jobs:
-      - nodeseek:
-          context: checkincontext
-      - v2ex:
-          context: checkincontext
+      # - nodeseek:
+      #     context: checkincontext
+      # - v2ex:
+      #     context: checkincontext
       - onepoint3acres:
           context: checkincontext
-      - deepflood:
-          context: checkincontext
-      - sakurafrp:
-          context: checkincontext
+      # - deepflood:
+      #     context: checkincontext
+      # - sakurafrp:
+      #     context: checkincontext
